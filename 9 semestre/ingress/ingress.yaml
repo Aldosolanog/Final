@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: app.asolano2.com
+      http:
+        paths:
+          - path: /crud
+            pathType: Exact
+            backend:
+              service:
+                name: myapp-service
+                port:
+                  number: 80
